@@ -1,0 +1,20 @@
+version: '3'
+services:
+  osg-wn:
+    image: djw8605/osgvo-docker-pilot:allroot
+    #build: .
+    environment:
+      - TOKEN=${TOKEN}
+      - GLIDEIN_Site=Derek-AWS-Test
+      - GLIDEIN_ResourceName=Derek-AWS-Test
+      - GLIDEIN_Start_Extra=TARGET.Owner=="dweitzel"
+      - OSG_SQUID_LOCATION=red-squid1.unl.edu:3128
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-group: osg-wn
+        awslogs-region: us-west-2
+        awslogs-stream-prefix: osg-wn-1
+    cap_add:
+      - SYS_PTRACE
+#    entrypoint: env
